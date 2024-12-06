@@ -10,6 +10,9 @@ import android.util.Rational
 import android.view.View
 import android.widget.TextView
 import nl.rogro82.pipup.Utils.getIpAddress
+import com.microsoft.appcenter.AppCenter;
+import com.microsoft.appcenter.analytics.Analytics;
+import com.microsoft.appcenter.crashes.Crashes;
 
 class MainActivity : Activity() {
 
@@ -20,7 +23,8 @@ class MainActivity : Activity() {
         // Initialize text views
         val textViewConnection = findViewById<TextView>(R.id.textViewServerAddress)
         val textViewServerAddress = findViewById<TextView>(R.id.textViewServerAddress)
-
+        AppCenter.start(getApplication(), "ec310f57-5163-46a8-b8dd-6f9a15e9e115",
+                  Analytics.class, Crashes.class);
         // Display server connection information
         when (val ipAddress = getIpAddress()) {
             is String -> {
